@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { HashRouter as Router } from "react-router-dom";
+import { ThemeProvider } from '@emotion/react';
+import { createTheme } from '@mui/material';
+import { green } from '@mui/material/colors';
+import Routes from './Routes';
+
+
 
 function App() {
+  let theme = createTheme({
+    palette: {
+      primary: {
+        main: '#7bc54c'
+      },
+      secondary: {
+        main: '#7bc54c',
+      }
+    },
+      typography: {
+        fontFamily: [
+          'sans-serif',
+        ].join(','),
+      },
+    
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Router slashType='slash'>
+        <Routes />
+      </Router>
+    </ThemeProvider>
   );
 }
 
